@@ -30,7 +30,7 @@ SECRET_KEY = '5_5^ym2-ac29%qdu(43egev)5%!qz5_qq*$j#9kb(ga_4_a3y3'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'tg_savefolder_bot.herokuapp.com',
+    'tg-savefolder-bot.herokuapp.com',
 ]
 
 
