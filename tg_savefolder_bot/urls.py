@@ -21,5 +21,5 @@ from heroku.views import UpdateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(f'{settings.UPDATE_URL}/', UpdateView.as_view()),
+    path(f'{settings.UPDATE_URL}', UpdateView.as_view()),
 ]
