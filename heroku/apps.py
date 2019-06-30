@@ -20,7 +20,7 @@ class HerokuConfig(AppConfig):
             LOGGER.warning(f'[Startup] Failed to delete webhooks:\n{res}')
 
         LOGGER.info('[Startup] Setting up new webhook')
-        res = methods.set_webhook.post({'url': settings.UPDATE_URL})
+        res = methods.set_webhook.post({'url': settings.FULL_UPDATE_URL})
         if res['ok']:
             LOGGER.info('[Startup] Successfully set up new webhook')
         else:
