@@ -13,6 +13,7 @@ import os
 from socket import gethostname, gethostbyname
 from environs import Env
 import uuid
+import logging
 import logging.config
 import sys
 
@@ -126,11 +127,22 @@ LOGGING_LEVEL = env('LOGGING_LEVEL', 'DEBUG')
 LOGGING_CONFIG = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
     'handlers': {
         'console': {
             'level': LOGGING_LEVEL,
             'class': 'logging.StreamHandler',
-            'stream': sys.stdout
+            'formatter': 'verbose'
         }
     },
     'loggers': {
