@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import os
-
+from socket import gethostname, gethostbyname
 from environs import Env
 import uuid
 
@@ -29,7 +29,7 @@ SECRET_KEY = '5_5^ym2-ac29%qdu(43egev)5%!qz5_qq*$j#9kb(ga_4_a3y3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [gethostname(), gethostbyname(gethostname())]
 
 
 # Application definition
