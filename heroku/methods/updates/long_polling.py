@@ -1,4 +1,4 @@
-from methods.method import TelegramAPIMethod
+from heroku.methods.method import TelegramAPIMethod
 
 
 class GetUpdates(TelegramAPIMethod):

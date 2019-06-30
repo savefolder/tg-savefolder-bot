@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.apps import AppConfig
 
-import heroku.methods as methods
+from heroku import methods
 
 import logging
 
