@@ -156,10 +156,10 @@ CUSTOM_LOGGING_CONFIG = {
 
 logging.config.dictConfig(CUSTOM_LOGGING_CONFIG)
 
-SELF_URL = env('SELF_URL')
-
 TELEGRAM_API_URL = env('TELEGRAM_API_URL', 'https://api.telegram.org/bot')
 BOT_TOKEN = env('BOT_TOKEN', '123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11')
 BOT_URL = f'{TELEGRAM_API_URL}{BOT_TOKEN}'
 
+SELF_URL = env('SELF_URL')
 UPDATE_URL_TOKEN = env('UPDATE_URL_TOKEN', str(uuid.uuid4()))
+UPDATE_URL = f'{SELF_URL}/update/{UPDATE_URL_TOKEN}'
