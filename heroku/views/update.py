@@ -9,5 +9,5 @@ LOGGER = logging.getLogger('heroku.update_view')
 
 class UpdateView(APIView):
     def post(self, request):
-        LOGGER.info(request)
+        LOGGER.info(request.data)
         return Response(status=HTTP_200_OK)
