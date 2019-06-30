@@ -13,6 +13,9 @@ import os
 from socket import gethostname, gethostbyname
 from environs import Env
 import uuid
+import logging.config
+import sys
+
 
 env = Env()
 
@@ -118,6 +121,27 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+LOGGING_LEVEL = env('LOGGING_LEVEL', 'DEBUG')
+LOGGING_CONFIG = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': LOGGING_LEVEL,
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': LOGGING_LEVEL,
+        }
+    }
+}
+
+logging.config.dictConfig(LOGGING_CONFIG)
 
 SELF_URL = env('SELF_URL')
 
