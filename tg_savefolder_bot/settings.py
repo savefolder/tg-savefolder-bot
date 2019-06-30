@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 from environs import Env
-
+import uuid
 
 env = Env()
 
@@ -29,9 +29,7 @@ SECRET_KEY = '5_5^ym2-ac29%qdu(43egev)5%!qz5_qq*$j#9kb(ga_4_a3y3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'tg-savefolder-bot.herokuapp.com',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -134,8 +132,12 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
+SELF_URL = env('SELF_URL')
+
 TELEGRAM_API_URL = env('TELEGRAM_API_URL', 'https://api.telegram.org/bot')
 
 BOT_TOKEN = env('BOT_TOKEN', '123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11')
 
 BOT_URL = f'{TELEGRAM_API_URL}{BOT_TOKEN}'
+
+UPDATE_URL_TOKEN = env('UPDATE_URL_TOKEN', str(uuid.uuid4()))

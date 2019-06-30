@@ -1,3 +1,2 @@
-import methods.updates as updates
-
+import heroku.methods.updates as update
 from .common import *

@@ -1,12 +1,16 @@
 import requests
 
-from settings import BOT_URL
+from django.conf import settings
 
 
 class TelegramAPIMethod:
     def __init__(self, method):
-        self.method_url = f'{BOT_URL}/{method}'
+        self.method_url = f'{settings.BOT_URL}/{method}'
 
-    def __call__(self, **kwargs):
+    def get(self, **kwargs):
         response = requests.get(self.method_url, **kwargs)
+        return response.json()
+
+    def post(self, **kwargs):
+        response = requests.post(self.method_url, **kwargs)
         return response.json()
