@@ -13,7 +13,6 @@ import os
 from socket import gethostname, gethostbyname
 from environs import Env
 import uuid
-import logging
 import logging.config
 import sys
 
@@ -29,6 +28,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
+
+DEBUG = env.bool('DEBUG', False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
@@ -123,14 +124,14 @@ USE_L10N = True
 USE_TZ = True
 
 
-LOGGING_LEVEL = env('LOGGING_LEVEL', 'DEBUG')
-LOGGING_CONFIG = {
+LOGGING_LEVEL = env('LOGGING_LEVEL', 'INFO')
+CUSTOM_LOGGING_CONFIG = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
-                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+                       'pathname=%(pathname)s lineno=%(lineno)s '
                        'funcname=%(funcName)s %(message)s'),
             'datefmt': '%Y-%m-%d %H:%M:%S'
         },
@@ -153,7 +154,7 @@ LOGGING_CONFIG = {
     }
 }
 
-logging.config.dictConfig(LOGGING_CONFIG)
+logging.config.dictConfig(CUSTOM_LOGGING_CONFIG)
 
 SELF_URL = env('SELF_URL')
 
