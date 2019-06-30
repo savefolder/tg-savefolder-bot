@@ -29,7 +29,7 @@ SECRET_KEY = '5_5^ym2-ac29%qdu(43egev)5%!qz5_qq*$j#9kb(ga_4_a3y3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [gethostname(), gethostbyname(gethostname())]
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 
 # Application definition
