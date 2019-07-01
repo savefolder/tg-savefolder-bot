@@ -26,6 +26,7 @@ class Migration(migrations.Migration):
                 ('message_id', models.IntegerField()),
                 ('date', models.DateTimeField()),
                 ('chat', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='heroku.Chat')),
+                ('text', models.CharField(max_length=4096, blank=True)),
             ],
         ),
         migrations.CreateModel(
@@ -43,7 +44,6 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('update_id', models.IntegerField()),
-                ('edited_message', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='update_edit', to='heroku.Message')),
                 ('message', models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='update', to='heroku.Message')),
             ],
         ),
