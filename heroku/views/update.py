@@ -34,7 +34,7 @@ class UpdateView(APIView):
             message_object = Message.objects.create(
                 message_id=message['message_id'],
                 from_user=user_object,
-                date=datetime.fromtimestamp(),
+                date=datetime.fromtimestamp(message['date']),
                 chat=chat_object,
                 text=text,
             )
