@@ -48,7 +48,7 @@ class UpdateView(APIView):
             else:
                 photo_object = None
 
-            document = message.get('document', None)
+            document = message.get('document')
             if document:
                 thumb = document.get('thumb')
                 if thumb:
@@ -63,7 +63,7 @@ class UpdateView(APIView):
                 document_object = Document.objects.create(
                     file_id=document['file_id'],
                     thumb=thumb_object,
-                    file_name=document.get('filename'),
+                    file_name=document.get('file_name'),
                     mime_type=document.get('mime_type'),
                     file_size=document.get('file_size'),
                 )
