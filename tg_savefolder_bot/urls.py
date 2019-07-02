@@ -17,9 +17,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 
-from heroku.views import UpdateView
+from heroku.views import UpdateView, PingView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ping/', PingView.as_view()),
     path(f'{settings.UPDATE_URL}', UpdateView.as_view()),
 ]

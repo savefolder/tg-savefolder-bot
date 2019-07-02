@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'heroku',
+    'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,7 @@ SELF_URL = env('SELF_URL')
 UPDATE_URL_TOKEN = env('UPDATE_URL_TOKEN', str(uuid.uuid4()))
 UPDATE_URL = f'update/{UPDATE_URL_TOKEN}/'
 FULL_UPDATE_URL = f'{SELF_URL}/{UPDATE_URL}'
+
+CRON_CLASSES = [
+    'cron.PingCronJob',
+]
