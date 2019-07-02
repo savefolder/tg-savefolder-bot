@@ -34,15 +34,19 @@ class UpdateView(APIView):
             text = message.get('text', '')
 
             photos = message.get('photo', [])
-            photos_list = [
-                Photo.objects.create(
-                    file_id=photo['file_id'],
-                    width=photo['width'],
-                    height=photo['height'],
-                    file_size=photo.get('file_size'),
+            if photos:
+                max_sized_photo = photos[0]
+                for photo in photos:
+                    if max_sized_photo['width'] * max_sized_photo['height'] < photo['width'] * photo['height']:
+                        max_sized_photo = photo
+                photo_object = Photo.objects.create(
+                    file_id=max_sized_photo['file_id'],
+                    width=max_sized_photo['width'],
+                    height=max_sized_photo['height'],
+                    file_size=max_sized_photo.get('file_size'),
                 )
-                for photo in photos
-            ]
+            else:
+                photo_object = None
 
             document = message.get('document', None)
             if document:
@@ -72,15 +76,15 @@ class UpdateView(APIView):
                 date=datetime.fromtimestamp(message['date']),
                 chat=chat_object,
                 text=text,
-                photos=photos_list,
+                photo=photo_object,
                 document=document_object,
             )
             Update.objects.create(update_id=update['update_id'], message=message_object)
 
             if text:
                 self._process_text(text)
-            if photos_list:
-                self._process_photos(photos_list)
+            if photo_object:
+                self._process_photo(photo_object)
             if document_object is not None:
                 self._process_document(document_object)
 
@@ -90,8 +94,8 @@ class UpdateView(APIView):
         LOGGER.info('[Update] Process text')
         pass
 
-    def _process_photos(self, photos_list):
-        LOGGER.info('[Update] Process photos')
+    def _process_photo(self, photo):
+        LOGGER.info('[Update] Process photo')
         pass
 
     def _process_document(self, document):

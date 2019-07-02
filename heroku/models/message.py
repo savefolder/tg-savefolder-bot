@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres import fields
 
 from heroku.models import User, Chat, Document, Photo
 
@@ -17,5 +16,5 @@ class Message(models.Model):
     date = models.DateTimeField()
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     text = models.CharField(max_length=4096, blank=True)
-    document = models.ForeignKey(Document, on_delete=models.SET_NULL, null=True)
-    photos = fields.ArrayField(Photo, null=True)
+    document = models.OneToOneField(Document, on_delete=models.CASCADE, null=True)
+    photo = models.OneToOneField(Photo, on_delete=models.CASCADE, null=True)
