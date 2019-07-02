@@ -29,7 +29,7 @@ class UpdateView(APIView):
                 username=from_user.get('username'),
             )
             chat = message['chat']
-            chat_object, _ = Chat.objects.get_or_create(id=chat['id'], chat_type=chat['type'])
+            chat_object, _ = Chat.objects.get_or_create(id=chat['id'], type=chat['type'])
 
             text = message.get('text', '')
 
