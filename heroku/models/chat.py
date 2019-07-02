@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Chat(models.Model):
-    CHAT_TYPES = (
+    TYPES = (
         ('private', 'private'),
         ('group', 'group'),
         ('supergroup', 'supergroup'),
@@ -10,4 +10,4 @@ class Chat(models.Model):
     )
 
     id = models.BigIntegerField(primary_key=True)
-    chat_type = models.CharField(max_length=16, choices=CHAT_TYPES)
+    type = models.CharField(max_length=16, choices=TYPES)
