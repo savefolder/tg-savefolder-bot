@@ -16,7 +16,7 @@ class UpdateView(APIView):
     def post(self, request):
         update = request.data
 
-        LOGGER.info('[Update] Received update: $s', update)
+        LOGGER.info('[Update] Received update: %s', update)
 
         if update.get('message') is not None:
             message = update['message']
