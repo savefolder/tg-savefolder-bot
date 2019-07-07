@@ -1,7 +1,11 @@
 from django.db import models
 
+from utils import CustomManager
+
 
 class Chat(models.Model):
+    objects = CustomManager()
+
     TYPES = (
         ('private', 'private'),
         ('group', 'group'),

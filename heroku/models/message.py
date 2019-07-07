@@ -1,9 +1,12 @@
 from django.db import models
 
+from utils import CustomManager
 from heroku.models import User, Chat, Document, Photo
 
 
 class Message(models.Model):
+    objects = CustomManager()
+
     TYPES = (
         ('text', 'text'),
         ('document', 'document'),
