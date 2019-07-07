@@ -20,7 +20,7 @@ class UpdateView(APIView):
     def _postpone_object_creation(self, model, **kwargs):
         result = model.objects.get_or_none(**kwargs)
         if result is None:
-            user_object = User(**kwargs)
+            user_object = model(**kwargs)
             self._objects_to_save.append(user_object)
         return result
 
