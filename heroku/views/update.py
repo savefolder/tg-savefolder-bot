@@ -44,8 +44,8 @@ class UpdateView(APIView):
             id=from_user['id'],
             is_bot=from_user['is_bot'],
             first_name=from_user['first_name'],
-            last_name=from_user.get('last_name'),
-            username=from_user.get('username'),
+            last_name=from_user.get('last_name', ''),
+            username=from_user.get('username', ''),
         )
 
         chat = message['chat']
@@ -86,8 +86,8 @@ class UpdateView(APIView):
                 Document,
                 file_id=document['file_id'],
                 thumb=thumb_object,
-                file_name=document.get('file_name'),
-                mime_type=document.get('mime_type'),
+                file_name=document.get('file_name', ''),
+                mime_type=document.get('mime_type', ''),
                 file_size=document.get('file_size'),
             )
         else:
