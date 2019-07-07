@@ -25,9 +25,9 @@ class UpdateView(APIView):
         return result
 
     def _save_postponed_objects(self):
-        self._objects_to_save = list(reversed(self._objects_to_save))
-        while len(self._objects_to_save) > 0:
-            self._objects_to_save.pop().save()
+        objects_to_process = list(reversed(self._objects_to_save))
+        while len(objects_to_process) > 0:
+            objects_to_process.pop().save()
 
     def post(self, request):
         update = request.data
