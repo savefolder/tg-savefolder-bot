@@ -25,6 +25,7 @@ class UpdateView(APIView):
         return result
 
     def _save_postponed_objects(self):
+        self._objects_to_save = list(reversed(self._objects_to_save))
         while len(self._objects_to_save) > 0:
             self._objects_to_save.pop().save()
 
