@@ -8,4 +8,4 @@ class Update(models.Model):
     objects = CustomManager()
 
     update_id = models.IntegerField()
-    message = models.OneToOneField(Message, on_delete=models.CASCADE, null=True, related_name='update')
+    message = models.OneToOneField(Message, on_delete=models.CASCADE, null=True, blank=True, related_name='update')

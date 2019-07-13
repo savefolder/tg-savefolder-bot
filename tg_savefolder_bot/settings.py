@@ -169,3 +169,5 @@ FULL_UPDATE_URL = f'{SELF_URL}/{UPDATE_URL}'
 CRON_CLASSES = [
     'cron.PingCronJob',
 ]
+
+WEBSOCKET_URI = env('WEBSOCKET_URI', '')

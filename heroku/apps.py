@@ -13,7 +13,7 @@ class HerokuConfig(AppConfig):
 
     def ready(self):
         LOGGER.info('[Startup] Checking for existing webhooks')
-        res = methods.updates.get_webhook_info.post()
+        res = methods.updates.get_webhook_info.get()
         if res['ok']:
             if res['result']['url'] == settings.FULL_UPDATE_URL:
                 LOGGER.info(f'[Startup] Found existing webhook for valid url: {res["result"]["url"]}')
