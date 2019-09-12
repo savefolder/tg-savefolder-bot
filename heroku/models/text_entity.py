@@ -1,7 +1,7 @@
 import enum
 from django.db import models
 
-from heroku.models import User
+from heroku.models import User, Text
 
 
 class TextEntity(models.Model):
@@ -43,3 +43,4 @@ class TextEntity(models.Model):
     length = models.IntegerField()
     url = models.CharField(max_length=256, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    text = models.ForeignKey(Text, related_name='entities')
